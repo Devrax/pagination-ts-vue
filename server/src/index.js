@@ -1,9 +1,20 @@
-const express = require('express');
+const express = require('express'),
+    cors = require('cors'),
+    morgan = require('morgan'),
+    app = express(),
+    port = 3000,
+    db = require('./database'), //Import the code from database.js
+    routes = require('./routes/index'); //import the code from routes/index.js
 
-require('./database');
+db; //This represent the whole code block of database.js
 
-const app = express(), port = 3000;
+app
+    .use(morgan('combined'))
 
-app.listen(port, () => {
-    console.log('Listen on port:', port)
-})
+    .use(cors)
+
+    .use('./', routes/*same here*/)
+
+    .listen(port, () => {
+        console.log('Listen on port:', port)
+    })
