@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container section">
+      <h1 class="center">WELCOME TO THE SUPER-BASIC PAGINATION</h1>
       <div class="row">
         <div class="col s4" v-for="article in displayArticles" :key="article.id">
           <div class="card">
@@ -76,7 +77,7 @@ export default Vue.extend({
     setArticles(): void {
       let numberOfPages: number = Math.ceil(this.articles.length/this.perPage);
 
-      for(let i: number= 1; i <= numberOfPages;i++ ){
+      for(let i: number= 1; i <= numberOfPages;i++){
         this.pages.push(i);
       }
     }
@@ -99,3 +100,10 @@ export default Vue.extend({
 })
 </script>
 
+<style scoped>
+
+span{
+  text-shadow: 1px 1px 2px black;
+}
+
+</style>
