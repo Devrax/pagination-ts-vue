@@ -21,13 +21,17 @@
       </div>
       <div class="center">
         <ul class="pagination">
-          <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-          <li class="active"><a href="#!">1</a></li>
-          <li class="waves-effect"><a href="#!">2</a></li>
-          <li class="waves-effect"><a href="#!">3</a></li>
-          <li class="waves-effect"><a href="#!">4</a></li>
-          <li class="waves-effect"><a href="#!">5</a></li>
-          <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          <li v-if="page != 1" class="disabled" @click="page--">
+            <a href="#!">
+              <i class="material-icons">chevron_left</i>
+            </a>
+          </li>
+          <li class="active" v-for="pageNumber in pages.slice(page-1, page+5)" :key="pageNumber" @click="page = pageNumber">
+            <a href="#!">{{pageNumber}}</a>
+          </li>
+          <li class="waves-effect" v-if="page != pages.length" @click="page++">
+            <a href="#!"><i class="material-icons">chevron_right</i></a>
+          </li>
         </ul>     
       </div>       
     </div>
@@ -43,7 +47,7 @@ interface Pagina{
     baseURL: string;
     page: number;
     perPage: number;
-    pages: [];
+    pages: number[];
 }
 
 export default Vue.extend({
@@ -68,6 +72,13 @@ export default Vue.extend({
           to: number = page * perPage;
 
       return entries.slice(from, to);
+    },
+    setArticles(): void {
+      let numberOfPages: number = Math.ceil(this.articles.length/this.perPage);
+
+      for(let i: number= 1; i <= numberOfPages;i++ ){
+        this.pages.push(i);
+      }
     }
   },
   computed: {
@@ -79,7 +90,12 @@ export default Vue.extend({
     slice: function(value: string): string {
       return value.slice(0, 30).trim() + '...';
     }
-  }
+  },
+  watch: {
+    articles() {
+      this.setArticles();
+    }
+  },
 })
 </script>
 
