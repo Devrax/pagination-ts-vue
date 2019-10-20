@@ -17,4 +17,4 @@ app
 
     .listen(port, () => {
         console.log('Listen on port:', port)
-    })
+    });
