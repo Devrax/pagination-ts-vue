@@ -11,9 +11,9 @@ db; //This represent the whole code block of database.js
 app
     .use(morgan('combined'))
 
-    .use(cors)
+    .use(cors())
 
-    .use('./', routes/*same here*/)
+    .use('/', routes/*same here*/)
 
     .listen(port, () => {
         console.log('Listen on port:', port)
