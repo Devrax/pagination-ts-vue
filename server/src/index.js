@@ -1,9 +1,8 @@
 const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+
+require('./database');
 
 const app = express(), port = 3000;
-
 
 app.listen(port, () => {
     console.log('Listen on port:', port)
