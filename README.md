@@ -4,8 +4,13 @@
 
 first you need to install mongodb in your computer and start the service (From command line is like this)
 
+#### Linux
 ```bash
 sudo service mongod start
+```
+#### Windows
+```bash
+service mongod start
 ```
 
 to stop it only change `start` for `stop`.
